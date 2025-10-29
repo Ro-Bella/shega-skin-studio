@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>የአስተዳዳሪ መግቢያ - Shega</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>የአስተዳዳሪ መግቢያ</h1>
+        
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">የተጠቃሚ ስም:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">የይለፍ ቃል:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">ይግቡ</button>
+            
+        </form>
+
+        <div id="message" class="hidden"></div>
+
+        <div class="navigation-links">
+            <a href="/landing.html">ወደ ዋናው ገጽ ተመለስ</a>
+
+
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const response = await fetch('/api/admin/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            if (response.ok) {
+                // በተሳካ ሁኔታ ከገባ በኋላ ገጹን እንደገና ይጫኑት።
+                window.location.replace('/admin-dashboard.html');
+            } else {
+                const result = await response.json();
+                const messageEl = document.getElementById('message');
+                messageEl.textContent = result.message;
+                messageEl.className = 'error';
+            }
+        });
+    </script>
+</body>
+</html>

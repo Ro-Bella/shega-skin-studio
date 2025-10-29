@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shega / ሸጋ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <body class="landing-background">
+    <div class="container">
+        <h1>Shega Skin Studio</h1>
+        <h3>Book an Appointment</h3>
+
+        <form id="appointment-form">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="time">Time:</label>
+                <input type="time" id="time" required>
+            </div>
+
+            <div class="form-group">
+                <label for="service">Service:</label>
+                <select id="service">
+                    <option>Signature Facial</option>
+                    <option>Dermaplaning</option>
+                    <option>Microneedling</option>
+                    <option>Chemical peel</option>
+                    <option>BB Glowing</option>
+                    <option>Microderma Brasion</option>
+                    <option>Nano Infusion</option>
+                </select>
+            </div>
+
+            <button type="submit">Book Appointment</button>
+        </form>
+
+        <p id="message" class="hidden"></p><br>
+        
+        <div class="center-link">
+            <a href="/admin-login.html">Admin Login</a>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="Am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ሸጋ / Shega</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <body class="landing-background">
+    <div class="container">
+        <h1>ሸጋ የፊት የቆዳ እንክብካቤ</h1>
+        <h3>ቀጠሮ ያስይዙ</h3>
+   
+
+        <form id="appointment-form">
+            <div class="form-group">
+                <label for="name">ሙሉ ስም:</label>
+                <input type="text" id="name" required>
+            </div>
+
+
+            <div class="form-group">
+                <label for="phone">ስልክ ቁጥር:</label>
+                <input type="tel" id="phone" required>
+            </div>
+
+
+            <div class="form-group">
+                <label for="date">ቀን:</label>
+                <input type="date" id="date" required>
+            </div>
+            
+
+            <div class="form-group">
+                <label for="time">ሰዓት:</label>
+                <input type="time" id="time" required>
+            </div>
+
+            <div class="form-group">
+                <label for="service">አገልግሎት:</label>
+                <select id="service">
+                    <option>Signature Facial</option>
+                    <option>Dermaplaning</option>
+                    <option>Microneedling</option>
+                    <option>Chemical peel</option>
+                    <option>BB Glowing</option>
+                    <option>Microderma Brasion</option>
+                    <option>Nano Infusion</option>
+                   
+                </select>
+            </div>
+
+            <button type="submit">ቀጠሮ አስይዝ</button>
+        </form>
+
+        <p id="message" class="hidden"></p></br>
+        
+        <div class="center-link">
+            <a href="/admin-login.html">የአስተዳዳሪ መግቢያ</a>
+        </div>
+
+         
+        
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</body>
+</html>

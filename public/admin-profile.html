@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>የአስተዳዳሪ መረጃ ማዘመኛ - Shega</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>የአስተዳዳሪ መረጃ ያዘምኑ</h1>
+        <p>ለመቀየር የሚፈልጉትን ብቻ ይሙሉ</p>
+        
+        <form id="profile-form">
+            <div class="form-group">
+                <label for="username">አዲስ የተጠቃሚ ስም:</label>
+                <input type="text" id="username" name="username" placeholder="አዲስ የተጠቃሚ ስም ያስገቡ">
+            </div>
+            <div class="form-group">
+                <label for="password">አዲስ የይለፍ ቃል:</label>
+                <input type="password" id="password" name="password" placeholder="አዲስ የይለፍ ቃል ያስገቡ">
+            </div>
+            <button type="submit">አዘምን</button>
+        </form>
+
+        <div id="message" class="hidden"></div>
+
+        <div class="navigation-links">
+            <a href="/admin-dashboard.html">ወደ ዳሽቦርድ ተመለስ</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('profile-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const messageEl = document.getElementById('message');
+
+            if (!username && !password) {
+                messageEl.textContent = 'እባክዎ ቢያንስ አንዱን πεδίο ይሙሉ';
+                messageEl.className = 'error';
+                return;
+            }
+
+            const body = {};
+            if (username) body.username = username;
+            if (password) body.password = password;
+
+            const response = await fetch('/api/admin/profile', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            });
+
+            const result = await response.json();
+            
+            messageEl.textContent = result.message;
+            messageEl.className = result.success ? 'success' : 'error';
+
+            if (result.success) {
+                document.getElementById('profile-form').reset();
+                setTimeout(() => {
+                    messageEl.className = 'hidden';
+                }, 3000);
+            } else if (response.status === 401) {
+                // ክፍለ-ጊዜው ካለቀ ወደ መግቢያ ገጽ ይመልሱ
+                window.location.replace('/admin-login.html');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>አስተዳዳሪ መመዝገቢያ - Shega</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>አዲስ አስተዳዳሪ ይመዝግቡ</h1>
+        <p>ይህ ገጽ ለመጀመሪያ ጊዜ አስተዳዳሪ ለመፍጠር ብቻ ነው።</p>
+        
+        <form id="register-form">
+            <div class="form-group">
+                <label for="username">የተጠቃሚ ስም:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">የይለፍ ቃል:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">ይመዝገቡ</button>
+        </form>
+
+        <div id="message" class="hidden"></div>
+
+        <div class="navigation-links">
+            <a href="/admin-login.html">ወደ መግቢያ ገጽ</a>
+        </div>
+    </div>
+
+    <script>
+        // ይህንን ስክሪፕት ለቀላልነት እዚሁ አስቀምጠነዋል
+        document.getElementById('register-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const response = await fetch('/api/admin/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            const result = await response.json();
+            const messageEl = document.getElementById('message');
+            messageEl.textContent = result.message;
+            messageEl.className = result.success ? 'success' : 'error';
+            if(result.success) {
+                setTimeout(() => window.location.href = '/admin-login.html', 2000);
+            }
+        });
+    </script>
+</body>
+</html>
