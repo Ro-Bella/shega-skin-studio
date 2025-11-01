@@ -1,12 +1,13 @@
 // 1. የሚያስፈልጉ ሞጁሎች አስመጣ
 require('dotenv').config(); // ከ .env ፋይል አካባቢ ተለዋዋጮችን ለመጫን
-const express = require('express');
-const mongoose = require('mongoose');
+const express = require('express'); 
+const mongoose = require('mongoose'); 
 const path = require('path');
 const session = require('express-session');
 const bcrypt = require('bcryptjs');
 const Appointment = require('./models/Appointment');
 const Admin = require('./models/Admin');
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -176,5 +177,5 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`Open http://localhost:${PORT} to select a language.`);
-  console.log(`Admin Registration: http://localhost:${PORT}/admin-register.html`);
+  console.log(`Main Page: http://localhost:${PORT}/landing.html`);
 });

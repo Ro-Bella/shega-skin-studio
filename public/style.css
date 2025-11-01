@@ -39,14 +39,13 @@ h3 {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     display: flex;
     justify-content: center;
     padding: 20px;
 }
 
 .container {
-    background: #fff;
+    background-color: #fff;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
