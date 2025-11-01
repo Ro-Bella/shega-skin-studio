@@ -141,6 +141,18 @@ app.delete('/api/admin/appointments/:id', protect, async (req, res) => {
   }
 });
 
+// ሰ. ሁሉንም ቀጠሮዎች ለመሰረዝ (DELETE request) - ለአስተዳዳሪ ብቻ
+app.delete('/api/admin/appointments', protect, async (req, res) => {
+  try {
+    await Appointment.deleteMany({}); // ሁሉንም የቀጠሮ መረጃዎች ያጠፋል
+    res.json({ success: true, message: 'ሁሉም ቀጠሮዎች በተሳካ ሁኔታ ተሰርዘዋል' });
+  } catch (error) {
+    console.error('Error deleting all appointments:', error);
+    res.status(500).json({ success: false, message: 'ሁሉንም ቀጠሮዎች ለመሰረዝ አልተቻለም', error });
+  }
+});
+
+
 // ረ. የአስተዳዳሪን የተጠቃሚ ስም እና የይለፍ ቃል ለማዘመን (PUT request)
 app.put('/api/admin/profile', protect, async (req, res) => {
   try {

@@ -85,6 +85,40 @@ document.addEventListener('DOMContentLoaded', () => {
                         button.disabled = false;
                         button.textContent = 'አጥፋ';
                     }
+
+
+                   
+
+// 'ሁሉንም አጥፋ' የሚለውን ቁልፍ የማስተናገድ ተግባር
+const deleteAllBtn = document.getElementById('deleteAllBtn');
+if (deleteAllBtn) {
+  deleteAllBtn.addEventListener('click', async () => {
+    // ተጠቃሚው እርግጠኛ መሆኑን ለማረጋገጥ የማረጋገጫ መልዕክት እናሳያለን
+    const isConfirmed = confirm('እርግጠኛ ነዎት? ይህ ሁሉንም ቀጠሮዎች እስከመጨረሻው ያጠፋቸዋል!');
+
+    if (isConfirmed) {
+      try {
+        const response = await fetch('/api/admin/appointments', {
+          method: 'DELETE',
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          alert(result.message);
+          // ገጹን እንደገና በመጫን ወይም ዝርዝሩን በማፅዳት UIውን እናዘምነዋለን
+          document.getElementById('appointments-list').innerHTML = ''; 
+        } else {
+          alert('ስህተት፡ ' + result.message);
+        }
+      } catch (error) {
+        console.error('ሁሉንም ቀጠሮዎች በማጥፋት ላይ ሳለ ስህተት ተፈጥሯል:', error);
+        alert('ሁሉንም ቀጠሮዎች ለማጥፋት አልተቻለም። እባክዎ እንደገና ይሞክሩ።');
+      }
+    }
+  });
+}
+
                 }
             }
         });

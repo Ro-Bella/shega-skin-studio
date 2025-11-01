@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>የአስተዳዳሪ ዳሽቦርድ - Shega</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* 'ሁሉንም አጥፋ' የሚለውን ቁልፍ ቀይ ለማድረግ */
+        .delete-all-btn {
+            background-color: #f8f9fa; /* ደማቅ ቀይ ከለር */
+            border-color: #f8f9fa;
+            box-shadow: 0 5px 4px rgba(248, 3, 3, 0.986);
+            transition: background-color 0.3s;
+            
+        }
+        .delete-all-btn:hover {
+            background-color: red; /* ሲነካ የሚኖረው ቀይ */
+            border-color: red;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -24,6 +38,7 @@
             <a href="/api/admin/logout" class="action-btn logout-btn">ውጣ</a>
             <a href="/admin-profile.html" class="action-btn">የመግቢያ መረጃን አዘምን</a>
             <a href="/admin-register.html" class="action-btn">አዲስ አስተዳዳሪ መዝግብ</a>
+            <button id="deleteAllBtn" class="action-btn delete-all-btn">ሁሉንም ቀጠሮዎች አጥፋ</button>
         </div>
 
     </div>
